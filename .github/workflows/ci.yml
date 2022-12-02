@@ -36,7 +36,7 @@ jobs:
           key: ${{ runner.os }}-target
 
       - name: Build
-        run: cargo build --verbose --all-targets
+        run: cargo -Zsparse-registry build --verbose --all-targets
 
       - name: Test
         run: cargo test
