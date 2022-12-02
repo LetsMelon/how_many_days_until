@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    paths:
+      - '**.rs'
+      - '**Cargo.**'
+      - '.github/workflows/ci.yml'
+  pull_request:
+    paths:
+      - '**.rs'
+      - '**Cargo.**'
+      - '.github/workflows/ci.yml'
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          override: true
+
+      - name: Cache Target
+        id: cache-target
+        uses: actions/cache@v3
+        with:
+          path: target
+          key: ${{ runner.os }}-target
+
+      - name: Build
+        run: cargo build --verbose --all-targets
+
+      - name: Test
+        run: cargo test
