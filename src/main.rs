@@ -17,7 +17,7 @@ fn app() -> Command {
         .args([
             Arg::new("start")
                 .short('s')
-                .help("Start date; format: YYYY-MM-DD")
+                .help("Start date; format: YYYY-MM-DD; default: today")
                 .required(false)
                 .value_hint(ValueHint::Other)
                 .value_parser(value_parser!(NaiveDate)),
