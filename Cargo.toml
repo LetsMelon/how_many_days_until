@@ -1,5 +1,5 @@
 [package]
-name = "count_days"
+name = "how_many_days_until"
 version = "0.1.0"
 edition = "2021"
 
