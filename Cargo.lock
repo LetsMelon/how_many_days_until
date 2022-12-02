@@ -73,14 +73,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5827cebf4670468b8772dd191856768aedcb1b0278a04f989f7766351917b9dc"
 
 [[package]]
-name = "count_days"
-version = "0.1.0"
-dependencies = [
- "chrono",
- "computus",
-]
-
-[[package]]
 name = "cxx"
 version = "1.0.82"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -122,6 +114,14 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn",
+]
+
+[[package]]
+name = "how_many_days_until"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "computus",
 ]
 
 [[package]]
