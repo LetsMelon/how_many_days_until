@@ -1,7 +1,7 @@
 use chrono::naive::NaiveDate;
 use chrono::offset::Local;
 use chrono::Datelike;
-use count_days::count_days_in_between;
+use how_many_days_until::count_days_in_between;
 
 fn main() {
     let start = Local::now().date_naive();
