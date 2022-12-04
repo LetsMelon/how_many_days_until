@@ -3,6 +3,8 @@ use chrono::offset::Local;
 use clap::{value_parser, Arg, ArgMatches, Command, ValueHint};
 use how_many_days_until::count_days_in_between;
 
+const VERSION: &'static str = env!("CARGO_PKG_VERSION");
+
 struct Args {
     start: NaiveDate,
     end: NaiveDate,
@@ -11,7 +13,7 @@ struct Args {
 fn app() -> Command {
     Command::new("how_many_days_until")
         .author("Domenic Melcher, domi.m@outlook.com")
-        .version(env!("CARGO_PKG_VERSION"))
+        .version(VERSION)
         .about("Command line tool to calculate how many days are until a date, considering national holidays.")
         .arg_required_else_help(true)
         .args([
