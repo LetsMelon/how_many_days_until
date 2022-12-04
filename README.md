@@ -1,5 +1,20 @@
 # How many days until ... ?
 
+# Install
+
+Copy the `tar.gz`-archive for your platform or install via package manger.
+
+## Package manager
+
+### Brew (MacOS only)
+
+```sh
+$ brew tap LetsMelon/homebrew-how-many-days-until
+$ brew install how-many-days-until
+```
+
+[Tap Repository](https://github.com/LetsMelon/homebrew-how-many-days-until)
+
 # Usage
 
 ```sh
