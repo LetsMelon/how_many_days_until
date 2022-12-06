@@ -10,7 +10,7 @@ Copy the `tar.gz`-archive for your platform or install via package manger.
 
 ```sh
 $ brew tap LetsMelon/homebrew-how-many-days-until
-$ brew install how-many-days-until
+$ brew install how_many_days_until
 ```
 
 [Tap Repository](https://github.com/LetsMelon/homebrew-how-many-days-until)
