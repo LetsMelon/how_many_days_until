@@ -4,8 +4,17 @@ version=$( awk /^version/ Cargo.toml | cut -d '"' -f2 )
 version="${version//./_}"
 
 echo "Apple"
-cross build -r --target aarch64-apple-darwin && cp target/aarch64-apple-darwin/release/how_many_days_until how_many_days_until && tar -zcvf how_many_days_until_"$version"_darwin_aarch64.tar.gz how_many_days_until && rm how_many_days_until
-# cross build -r --target x86_64-apple-darwin && cp target/x86_64-apple-darwin/release/how_many_days_until how_many_days_until && tar -zcvf how_many_days_until_"$version"_darwin_x86_64.tar.gz how_many_days_until && rm how_many_days_until
+cross build -r --target aarch64-apple-darwin \
+    && cp target/aarch64-apple-darwin/release/how_many_days_until how_many_days_until \
+    && tar -zcvf how_many_days_until_"$version"_darwin_aarch64.tar.gz how_many_days_until \
+    && mv how_many_days_until how_many_days_until_aarch64
+cross build -r --target x86_64-apple-darwin \
+    && cp target/x86_64-apple-darwin/release/how_many_days_until how_many_days_until \
+    && tar -zcvf how_many_days_until_"$version"_darwin_x86_64.tar.gz how_many_days_until \
+    && mv how_many_days_until how_many_days_until_x86_64
+lipo -create -output how_many_days_until how_many_days_until_x86_64 how_many_days_until_aarch64 \
+    && tar -zcvf how_many_days_until_"$version"_darwin_universal.tar.gz how_many_days_until \
+    && rm how_many_days_until how_many_days_until_x86_64 how_many_days_until_aarch64
 
 echo "Linux"
 # cross build -r --target x86_64-unknown-linux-gnu && cp target/x86_64-unknown-linux-gnu/release/how_many_days_until how_many_days_until && tar -zcvf how_many_days_until_"$version"_linux_x86_64.tar.gz how_many_days_until && rm how_many_days_until
@@ -18,6 +27,7 @@ echo "Windows"
 echo "Calculate and save checksums"
 shasum -a 256 how_many_days_until_"$version"_darwin_aarch64.tar.gz > checksums.txt
 shasum -a 256 how_many_days_until_"$version"_darwin_x86_64.tar.gz >> checksums.txt
+shasum -a 256 how_many_days_until_"$version"_darwin_universal.tar.gz >> checksums.txt
 shasum -a 256 how_many_days_until_"$version"_linux_x86_64.tar.gz >> checksums.txt
 shasum -a 256 how_many_days_until_"$version"_linux_aarch64.tar.gz >> checksums.txt
 shasum -a 256 how_many_days_until_"$version"_windows_gnu_x86_64.tar.gz >> checksums.txt
